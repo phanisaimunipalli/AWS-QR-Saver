@@ -14,35 +14,20 @@ require("./config/passport")(passport);
 
 //DB config
 const db = require("./config/keys").MongoURI;
-// console.log("app.db: ", db);
 
-// const dynamoDB = require("./models/connect");
-// console.log("app.dynamoDB: ", dynamoDB);
 //connect to Mongo
-
-// mongoose.connect(db);
-// var database = mongoose.connection;
-// database.on("error", console.error.bind(console, "connection error:"));
-// database.once("open", function callback() {
-//   console.log("h");
-// });
-
 mongoose
-  .connect(db, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(db, { useNewUrlParser: true })
   .then(() => console.log("MongoDb connected!!"))
   .catch((err) => console.log(err));
 
 //EJS
 app.use(expressLayouts);
 app.set("view engine", "ejs");
-
+app.use("/public/", express.static("./public"));
 //BodyParser
 app.use(express.json());
 app.use(express.urlencoded({ extented: false }));
-app.use("/public/", express.static("./public"));
 
 //Express session
 app.use(

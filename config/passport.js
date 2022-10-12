@@ -11,31 +11,21 @@ const FacebookStrategy = require("passport-facebook").Strategy;
 
 //Load User Model
 const User = require("./../models/user");
-console.log("config.passport.User: ", JSON.stringify(User));
-// console.log("config.passport.User: ", User.email);
 
 module.exports = function (passport) {
   passport.use(
     new LocalStrategy({ usernameField: "email" }, (email, password, done) => {
-      console.log("passport.email: ", email);
-      console.log("passport.password: ", password);
       //Match User
       User.findOne({ email: email })
         .then((user) => {
-          console.log("passport.user: ", user);
           if (!user) {
             return done(null, false, {
               message: "That email is not registered!",
             });
           }
-          console.log("crossed findOne section");
-          if (password == user.password) {
-            return done(null, user);
-          }
+
           //Match Password
           bcrypt.compare(password, user.password, (err, isMatch) => {
-            console.log("passport.password: ", password);
-            console.log("passport.user.password: ", user.password);
             if (err) throw err;
 
             if (isMatch) {

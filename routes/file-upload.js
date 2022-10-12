@@ -32,7 +32,7 @@ router.post("/", (req, res) => {
       //for s3 bucket
       const s3FileURL = "https://phani-qrsaver.s3.us-west-1.amazonaws.com";
 
-      console.log("Start Bucket");
+      console.log("Starting the QRSaver Bucket");
       let s3bucket = new AWS.S3({
         accessKeyId: keys.AwsAccessKeyId,
         secretAccessKey: keys.AwsSecretAccessKey,
@@ -59,13 +59,9 @@ router.post("/", (req, res) => {
           //success
           req.flash("success_msg", "QR Code has been Successfully Uploaded!");
           res.redirect("/dashboard");
-
           //updating in dyanamodb
-
           var endDate = new Date();
-
           //dynamoDb
-
           var input = {
             email: email,
             createdDate: Date.now(),
