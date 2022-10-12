@@ -135,6 +135,17 @@ footer .footer-contents {
   animation: dash 5s linear forwards;
 }
 
+.btncolor{
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
 @keyframes dash {
   to {
     stroke-dashoffset: 0;
