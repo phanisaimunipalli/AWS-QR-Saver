@@ -16,11 +16,11 @@ router.get("/register", (req, res) => res.render("register"));
 router.post("/register", (req, res) => {
   console.log("register.req: ", req);
   console.log("register.req.body: ", req.body);
-  const { name, email, password, password2 } = req.body;
+  const { fname, lname, email, password, password2 } = req.body;
   let errors = [];
 
   //check required fields
-  if (!name || !email || !password || !password2) {
+  if (!fname || !lname || !email || !password || !password2) {
     errors.push({ msg: "Please fill in all fields!" });
   }
 
@@ -37,7 +37,8 @@ router.post("/register", (req, res) => {
   if (errors.length > 0) {
     res.render("register", {
       errors,
-      name,
+      fname,
+      lname,
       email,
       password,
       password2,
@@ -61,7 +62,8 @@ router.post("/register", (req, res) => {
             errors.push({ msg: "Email is already registered" });
             res.render("register", {
               errors,
-              name,
+              fname,
+              lname,
               email,
               password,
               password2,
@@ -75,7 +77,8 @@ router.post("/register", (req, res) => {
             // console.log(hashedPwd);
 
             const newUser = new User({
-              name,
+              fname,
+              lname,
               email,
               password,
               level: "U",
@@ -100,7 +103,8 @@ router.post("/register", (req, res) => {
             //update in dynamodb
             var input = {
               email: email,
-              name: name,
+              fname: fname,
+              lname: lname,
               level: "U",
               password: password,
             };

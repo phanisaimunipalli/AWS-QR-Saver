@@ -21,8 +21,8 @@ router.post("/", (req, res) => {
 
     //get user details
     const email = req.user.email;
-    const name = req.user.name;
-
+    const fname = req.user.fname;
+    const lname = req.user.lname;
     const file = req.file;
 
     if (!file) {
@@ -69,7 +69,8 @@ router.post("/", (req, res) => {
             fileName: myFileName,
             fileUrl: data.Location,
             modifiedDate: Date.now(),
-            name: name,
+            fname: fname,
+            lname: lname,
             uploadTime: (endDate - startDate) / 1000,
           };
 
@@ -93,7 +94,8 @@ router.post("/", (req, res) => {
 
           //mongo
           const newFile = new Files({
-            user: name,
+            fname: fname,
+            lname: lname,
             email: email,
             fileUrl: data.Location,
             fileName: myFileName,

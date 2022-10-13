@@ -1,97 +1,106 @@
-<div  style="max-width:100%; margin-top: 90px;">
-<nav class="navbar navbar-expand-lg navbar-light nav-fill w-100" style="background-color: #08B3E5;">
+<div style="max-width:100%; margin-top: 90px;">
+  <nav class="navbar navbar-expand-lg navbar-light nav-fill w-100" style="background-color: #08B3E5;">
     <a class="navbar-brand" href="#" style="font-size: 20px;font-weight: bold;color: white;">QR Saver Dashboard</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active" style="background-color: #1BD7BB;border-radius: 56px;border: none; height: auto; margin: 4px 2px;">
-                <a class="nav-link" href="#" style="font-size: 20px;font-weight: bold;display: inline-block;padding: 1px 15px;">Hello <%=user.name %>, Welcome Back<span class="sr-only">(current) </span></a>
-            </li>
-        </ul>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active" style="background-color: #1BD7BB;border-radius: 56px;border: none; height: auto; margin: 4px 2px;">
+          <a class="nav-link" href="#" style="font-size: 20px;font-weight: bold;display: inline-block;padding: 1px 15px;">Hello <%=user.fname %>, Welcome Back<span class="sr-only">(current) </span></a>
+        </li>
+      </ul>
       <span class="navbar-text">
         <a href="/users/logout" style="text-decoration: none;font-size: 20px;color: white;"> <b>Logout</b></a>
       </span>
     </div>
   </nav>
-  <br/><br/>
+  <br /><br />
   <% include ./partials/messages %>
   <br />
   <%= typeof msg != 'undefined' ? msg : '' %>
-  <form action="/upload" method="POST" enctype="multipart/form-data" align="center" >
-      <div class="file-field input-field">
-        <div class="btn primary" style="background-color: #08B3E5">
-          <span style="font-size: 15px;font-weight: bold;">File</span>
-          <input name="QRImage_Saver" type="file">
-        </div>
-        <input type="hidden" name=user value=<%=user.name %>>
-        <div class="file-path-wrapper">
-          <input class="file-path validate" type="text">
-        </div>
+  <form action="/upload" method="POST" enctype="multipart/form-data" align="center">
+    <div class="file-field input-field">
+      <div class="btn primary" style="background-color: #08B3E5">
+        <span style="font-size: 15px;font-weight: bold;">File</span>
+        <input name="QRImage_Saver" type="file">
       </div>
-      <button type="submit" class="btn" style="background-color: #08B3E5;font-size: 15px; font-weight: bold;">Upload</button>
-    </form>
-    <br/><br/>
-    <br/><br/> 
-    <h4 style="background-color: #f2f2f2;" align="center"><u style="text-decoration: none; font-weight: 600; font-size: 25px;">Your QR Files</u></h4>
-    <table>
-      <thead style="  padding-top: 12px;
-      padding-bottom: 12px;
-      text-align: left;
+      <input type="hidden" name=user value=<%=user.fname %>>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
+    </div>
+    <button type="submit" class="btn" style="background-color: #08B3E5;font-size: 15px; font-weight: bold;">Upload</button>
+  </form>
+  <br /><br />
+  <br /><br />
+  <h4 style="background-color: #f2f2f2;" align="center"><u style="text-decoration: none; font-weight: 600; font-size: 25px;">Your QR Files</u></h4>
+  <table>
+    <thead class="text-center" style="padding-top: 12px;
       background-color: #04AA6D;
       color: white;font-size: 17px;text-align: center;align-items: center;">
-        <tr style="border: 1px solid #ddd;
-        text-align: center;">
-            <th>User Name</th>
-            <th>File Name</th>
-            <th>Upload Time</th>
-            <th>Download</th>
-            <th>File</th>
+      <tr style="border: 1px solid #ddd;
+        text-align: center;" align="center">
+        <th class="text-center">First Name</th>
+        <th class="text-center">Last Name</th>
+        <th class="text-center">File Name</th>
+        <th class="text-center">File Desc</th>
+        <th class="text-center">Upload Time</th>
+        <th class="text-center">Download</th>
+        <th class="text-center">Edit</th>
+        <th class="text-center">Remove</th>
+
+      </tr>
+    </thead>
+    <% var cf = 'http://d1297b0kzxbxrj.cloudfront.net/'%>
+    <tbody>
+      <% data.forEach(function (data) { %>
+      <form action="/delete" method="POST">
+        <tr class="text-center" style="background-color: #f2f2f2;">
+          <td><%= data.fname %></td>
+          <td><%= data.lname %></td>
+          <td><%= data.fileName %></td>
+          <td><%= data.fileDesc %></td>
+          <td><%= data.uploadTime %></td>
+          <td><a href='<%=cf + data.fileName %>' target="_blank" style="text-decoration: none;" download>
+              <h5 style="font-size: 16px;font-weight: bold;color:green;">Download</h5>
+            </a></td>
+          <td><button type='submit' class='btn' name='<%= data.fileUrl %>' style="background-color: #138be7; font-weight: bold;">Update</button></td>
+          <td><button type='submit' class='btn' name='<%= data.fileUrl %>' style="background-color: #EA4C46; font-weight: bold;">Delete</button></td>
+
+          <input type='hidden' id='email' name='email' value='<%= data.email %>'>
+          <input type='hidden' id='fileUrl' name='fileUrl' value='<%= data.fileUrl %>'>
+
         </tr>
-      </thead>
-      <% var cf = 'http://d1297b0kzxbxrj.cloudfront.net/'%>
-      <tbody>
-          <% data.forEach(function (data) { %>
-          <form action="/delete" method="POST">
-            <tr style="background-color: #f2f2f2;">
-                    <td><%= data.user %></td>
-                    <td><%= data.fileName %></td>
-                    <td><%= data.uploadTime %></td>
-                    <td><a href='<%=cf + data.fileName %>' target="_blank" style="font-size: 15px;font-weight: bold; text-decoration: none;" download><h5>Download</h5></a></td>
-                    <td><button type='submit' class='btn' name='<%= data.fileUrl %>'style="background-color: #EA4C46; font-weight: bold;">Delete</button></td>
-                    <input type='hidden' id='email' name='email' value='<%= data.email %>'>
-                    <input type='hidden' id='fileUrl' name='fileUrl' value='<%= data.fileUrl %>'>
-              </tr>
-            </form>
-            <% }) %>
-      </tbody>
-    </table>
+      </form>
+      <% }) %>
+    </tbody>
+  </table>
 
-    <br/><br/>
-    <br/><br/> 
-    <%if (logins.length > 0) { %>
-      <h4><u>User Details</u></h4>
-    <table>
-        <thead>
-          <tr>
-              <th>User Name</th>
-              <th>Email</th>
-          </tr>
-        </thead>
-  
-        <tbody>
-            <% logins.forEach(function (logins) { %>
-              <tr>
-                  <td><%=logins.name %></td>
-                  <td><%=logins.email %></td>
-              </tr>
-          <% }) %>
-          
-        </tbody>
-      </table>
+  <br /><br />
+  <br /><br />
+  <%if (logins.length > 0) { %>
+  <h4><u>User Details</u></h4>
+  <table>
+    <thead>
+      <tr>
+        <th>User Name</th>
+        <th>Email</th>
+      </tr>
+    </thead>
 
-      <br/><br/>
-    <br/><br/> 
-      <% } %>
-    </div>
+    <tbody>
+      <% logins.forEach(function (logins) { %>
+      <tr>
+        <td><%=logins.fname %></td>
+        <td><%=logins.email %></td>
+      </tr>
+      <% }) %>
+
+    </tbody>
+  </table>
+
+  <br /><br />
+  <br /><br />
+  <% } %>
+</div>
