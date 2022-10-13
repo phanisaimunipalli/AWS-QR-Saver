@@ -78,6 +78,9 @@ router.post("/", (req, res) => {
           var paramsDb = {
             TableName: "files",
             Item: input,
+            Key: {
+              fileName: input.fileName,
+            },
           };
 
           dynamoDbObj.put(paramsDb, function (err, data) {

@@ -25,6 +25,12 @@ mongoose
 app.use(expressLayouts);
 app.set("view engine", "ejs");
 app.use("/public/", express.static("./public"));
+
+var options = {
+  index: "welcome.ejs",
+};
+app.use("/", express.static("app", options));
+
 //BodyParser
 app.use(express.json());
 app.use(express.urlencoded({ extented: false }));
