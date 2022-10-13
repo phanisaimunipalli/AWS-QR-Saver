@@ -1,64 +1,165 @@
-Welcome to the AWS CodeStar sample web application
+
+![Logo](https://github.com/phanisaimunipalli/AWS-QR-Saver/blob/master/public/images/qrsaver_logo.png?raw=true)
+
+Welcome to the AWS QR Saver
 ==================================================
 
-This sample code helps get you started with a simple Node.js web service deployed by AWS CloudFormation to AWS Lambda and Amazon API Gateway.
+We all come across many QR Codes daily and it is hard to track all of them when they are in mixed with our personal photos in the gallery. The QR Saver solves this problem by with a **AWS Cloud Solution** to allow users to upload, update, download and delete your QR Codes from anywhere in the world.
+
+
+Coursework
+-----------
+This web application is powered by AWS CodeStar and developed as part of CMPE-281 Project assignment leveraging AWS Cloud services, deployed by **AWS CloudFormation** to **AWS Elastic Bean Stalk** and **Amazon API Gateway**.
+
+*	University: [San Jose State University](http://www.sjsu.edu/)
+* Course: Cloud Technologies (CMPE-281)
+*	Professor: [Sanjay Garje](https://www.linkedin.com/in/sanjaygarje/)
+*	Student: [Phani Sai Ram Munipalli](https://www.linkedin.com/in/iamphanisairam/)
 
 What's Here
 -----------
 
-This sample includes:
+This application includes:
 
 * README.md - this file
 * buildspec.yml - this file is used by AWS CodeBuild to package your
-  application for deployment to AWS Lambda
+  application for deployment to AWS Elastic Bean Stalk
 * index.js - this file contains the sample Node.js code for the web service
-* template.yml - this file contains the AWS Serverless Application Model (AWS SAM) used
-  by AWS CloudFormation to deploy your application to AWS Lambda and Amazon API
-  Gateway.
 * tests/ - this directory contains unit tests for your application
 * template-configuration.json - this file contains the project ARN with placeholders used for tagging resources with the project ID
 
-What Do I Do Next?
-------------------
 
-If you have checked out a local copy of your repository you can start making
-changes to the sample code.  We suggest making a small change to index.js first,
-so you can see how changes pushed to your project's repository are automatically
-picked up by your project pipeline and deployed to AWS Lambda and Amazon API Gateway.
-(You can watch the pipeline progress on your AWS CodeStar project dashboard.)
-Once you've seen how that works, start developing your own code, and have fun!
 
-To run your tests locally, go to the root directory of the
-sample code and run the `npm test` command, which
-AWS CodeBuild also runs through your `buildspec.yml` file.
 
-To test your new code during the release process, modify the existing tests or
-add tests to the tests directory. AWS CodeBuild will run the tests during the
-build stage of your project pipeline. You can find the test results
-in the AWS CodeBuild console.
+## Features
 
-Learn more about AWS CodeBuild and how it builds and tests your application here:
-https://docs.aws.amazon.com/codebuild/latest/userguide/concepts.html
+- High Availability
+- CloudFront Distribution
+- Auto Scaling
+- Multi Regional AZs
 
-Learn more about AWS Serverless Application Model (AWS SAM) and how it works here:
-https://github.com/awslabs/serverless-application-model/blob/master/HOWTO.md
 
-AWS Lambda Developer Guide:
-https://docs.aws.amazon.com/lambda/latest/dg/deploying-lambda-apps.html
+## Tech Stack
 
-Learn more about AWS CodeStar by reading the user guide, and post questions and
-comments about AWS CodeStar on our forum.
+**Client:** Embedded JavaScript, Bootstrap, CSS, HTML5
 
-User Guide: https://docs.aws.amazon.com/codestar/latest/userguide/welcome.html
+**Server:** Node, Express
 
-Forum: https://forums.aws.amazon.com/forum.jspa?forumID=248
+**Libraries:** passport, aws-sdk, aws-s3, bcrypt, mongoose
 
-What Should I Do Before Running My Project in Production?
-------------------
+**Database:** AWS Dynamo DB
 
-AWS recommends you review the security best practices recommended by the framework
-author of your selected sample application before running it in production. You
-should also regularly review and apply any available patches or associated security
-advisories for dependencies used within your application.
+**AWS Cloud Services:** AWS S3, Elastic Bean Stalk, CloudFront, CloudWatch, EC2, Elastic Load Balancer, Auto Scaling Group, Lambda, Multi AZ
 
-Best Practices: https://docs.aws.amazon.com/codestar/latest/userguide/best-practices.html?icmpid=docs_acs_rm_sec
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/phanisaimunipalli/AWS-QR-Saver.git
+```
+
+Go to the project directory
+
+```bash
+  cd aws-qrsaver
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Configuration
+
+``Update DynamoDB AccessKeys' details with your custom user generated credentials.``
+
+Start the server
+
+```bash
+  npm run start
+```
+
+
+## Documentation
+
+[QR Saver Deep Dive](https://github.com/phanisaimunipalli/AWS-QR-Saver/blob/master/screenshots/Project1-AWS-QR-Saver.pdf?raw=true)
+
+
+## Optimizations
+
+Created the application with maximum scalability and availbility across different regions in the Globe using AWS AZs. Disaster recoveries, Cross-Region Buckets for AWS S3, Auto Start of EC2 Instance, Various Datapoints and monitoring metrics continously watched using CloudWatch dashboards. 
+
+
+## Screenshots
+
+
+**New User Registration** 
+
+![User Registration](https://github.com/phanisaimunipalli/AWS-QR-Saver/blob/master/screenshots/qrsaver-register.gif?raw=true)
+
+
+**Custom Login** 
+
+![Custom Login](https://github.com/phanisaimunipalli/AWS-QR-Saver/blob/master/screenshots/qrsaver-customlogin.gif?raw=true)
+
+
+**Upload File** 
+
+![File Upload](https://github.com/phanisaimunipalli/AWS-QR-Saver/blob/master/screenshots/qrsaver-fileupload.gif?raw=true)
+
+
+**Check in AWS S3** 
+
+![Check in AWS s3](https://github.com/phanisaimunipalli/AWS-QR-Saver/blob/master/screenshots/qrsaver-fileupload-s3.gif?raw=true)
+
+
+**File record in DynamoDB** 
+
+![File DynamoDB](https://github.com/phanisaimunipalli/AWS-QR-Saver/blob/master/screenshots/qrsaver-fileupload-dynamodb.gif?raw=true)
+
+
+**Delete File** 
+
+![Delete File](https://github.com/phanisaimunipalli/AWS-QR-Saver/blob/master/screenshots/qrsaver-filedelete.gif?raw=true)
+
+**Admin Panel** 
+
+
+![Admin Panel](https://github.com/phanisaimunipalli/AWS-QR-Saver/blob/master/screenshots/qrsaver-admin.gif?raw=true)
+
+**QR Saver AWS Elastic Beanstalk** 
+
+![QRSaver Beanstalk](https://github.com/phanisaimunipalli/AWS-QR-Saver/blob/master/screenshots/qrsaver-elasticbean.gif?raw=true)
+
+
+**QRS - AWS CodePipeline** 
+
+![AWS CodePipeline](https://github.com/phanisaimunipalli/AWS-QR-Saver/blob/master/screenshots/qrsaver-codepipeline.gif?raw=true)
+
+
+**QRS - AWS CloudWatch** 
+
+![AWS CloudWatch](https://github.com/phanisaimunipalli/AWS-QR-Saver/blob/master/screenshots/qrsaver-cloudwatch.gif?raw=true)
+
+
+**QRS - AWS CloudFront** 
+
+![AWS CloudFront](https://github.com/phanisaimunipalli/AWS-QR-Saver/blob/master/screenshots/qrsaver-cloudfront.gif?raw=true)
+
+
+**QRS - AWS Lambda Restart** 
+
+![AWS Lambda](https://github.com/phanisaimunipalli/AWS-QR-Saver/blob/master/screenshots/qrsaver-lambda.gif?raw=true)
+
+**QRS - AWS SNS** 
+
+![AWS SNS](https://github.com/phanisaimunipalli/AWS-QR-Saver/blob/master/screenshots/qrsaver-sns.png?raw=true)
+
+**Custom Files** 
+
+![Custom Files](https://github.com/phanisaimunipalli/AWS-QR-Saver/blob/master/screenshots/qrsaver-files-custom.gif?raw=true)
+
+
