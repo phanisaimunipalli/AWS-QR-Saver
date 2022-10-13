@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 // const multer = require("multer");
 
 const app = express();
-
+app.use("/", express.static("app"));
 //passport config
 require("./config/passport")(passport);
 
@@ -24,12 +24,7 @@ mongoose
 //EJS
 app.use(expressLayouts);
 app.set("view engine", "ejs");
-app.use("/public/", express.static("./public"));
-
-var options = {
-  index: "welcome.ejs",
-};
-app.use("/", express.static("app", options));
+// app.use("/public/", express.static("./public"));
 
 //BodyParser
 app.use(express.json());
