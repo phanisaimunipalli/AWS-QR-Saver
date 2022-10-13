@@ -34,7 +34,7 @@
   </form>
   <br /><br />
   <br /><br />
-  <h4 style="background-color: #f2f2f2;" align="center"><u style="text-decoration: none; font-weight: 600; font-size: 25px;">Your QR Files</u></h4>
+  <h4 style="background-color: #f2f2f2;" align="center"><u style="text-decoration: none; font-weight: 600; font-size: 25px;">QR Images</u></h4>
   <table>
     <thead class="text-center" style="padding-top: 12px;
       background-color: #04AA6D;
@@ -57,11 +57,11 @@
       <% data.forEach(function (data) { %>
       <form action="/delete" method="POST">
         <tr class="text-center" style="background-color: #f2f2f2;">
-          <td><%= data.fname %></td>
-          <td><%= data.lname %></td>
-          <td><%= data.fileName %></td>
-          <td><%= data.fileDesc %></td>
-          <td><%= data.uploadTime %></td>
+          <td class="text-center"><%= data.fname %></td>
+          <td class="text-center"><%= data.lname %></td>
+          <td class="text-center"><%= data.fileName %></td>
+          <td class="text-center"><%= data.fileDesc %></td>
+          <td class="text-center"><%= data.uploadTime %></td>
           <td><a href='<%=cf + data.fileName %>' target="_blank" style="text-decoration: none;" download>
               <h5 style="font-size: 16px;font-weight: bold;color:green;">Download</h5>
             </a></td>
@@ -80,20 +80,22 @@
   <br /><br />
   <br /><br />
   <%if (logins.length > 0) { %>
-  <h4><u>User Details</u></h4>
+  <h4 style="background-color: rgb(55, 212, 230);" align="center"><u style="text-decoration: none; font-weight: 600; font-size: 25px; color: white;">User Details</u></h4>
   <table>
     <thead>
       <tr>
-        <th>User Name</th>
-        <th>Email</th>
+        <th class="text-center">First Name</th>
+        <th class="text-center">Last Name</th>
+        <th class="text-center">Email</th>
       </tr>
     </thead>
 
     <tbody>
       <% logins.forEach(function (logins) { %>
       <tr>
-        <td><%=logins.fname %></td>
-        <td><%=logins.email %></td>
+        <td class="text-center"><%=logins.fname %></td>
+        <td class="text-center"><%=logins.lname %></td>
+        <td class="text-center"><%=logins.email %></td>
       </tr>
       <% }) %>
 

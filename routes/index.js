@@ -1,123 +1,114 @@
-const express=require('express');
-const router=express.Router();
-const { ensureAuthenticated }= require('./../config/auth');
-const AWS = require('aws-sdk');
+const express = require("express");
+const router = express.Router();
+const { ensureAuthenticated } = require("./../config/auth");
+const AWS = require("aws-sdk");
 
-const User = require('./../models/user');
-const Files = require('./../models/files');
- 
+const User = require("./../models/user");
+const Files = require("./../models/files");
+
 //dynamoDb
-const dynamoDbObj = require('./../models/connect');
+const dynamoDbObj = require("./../models/connect");
 
 //Welcome Page
-router.get('/',(req,res)=>res.render('welcome'));
+router.get("/", (req, res) => res.render("welcome"));
 
 //dahsboard Page
-router.get('/dashboard',ensureAuthenticated,(req,res)=>{
+router.get("/dashboard", ensureAuthenticated, (req, res) => {
+  const currentuser = req.user;
+  const email = req.user.email;
+  console.log("req.user.fname: ", req.user.fname);
 
-    const currentuser =req.user;
-    const email = req.user.email;
+  if (req.user.fname == "admin") {
+    // let getdata = () => {
+    //     var params = {
+    //         TableName: 'user',
+    //         Key: {
+    //             'email': email
+    //         },
+    //         "level": {
+    //             ComparisonOperator: "NE",
+    //             AttributeValueList: [ {"S":"A"} ]
+    //        }
+    //     };
 
-    if(req.user.name == 'admin'){
+    //     dynamoDbObj.get(params, function (err, userdata) {
 
-        // let getdata = () => {
-        //     var params = {
-        //         TableName: 'user',
-        //         Key: {
-        //             'email': email
-        //         },
-        //         "level": {
-        //             ComparisonOperator: "NE",
-        //             AttributeValueList: [ {"S":"A"} ]
-        //        }
-        //     };
+    //         if (err){ throw err}
+    //         else{
 
-        //     dynamoDbObj.get(params, function (err, userdata) {
-                
-        //         if (err){ throw err}
-        //         else{
+    //             var params1 = {
+    //                 TableName: 'files',
+    //                 Key: {
+    //                     'email': email
+    //                 }
+    //             };
 
-        //             var params1 = {
-        //                 TableName: 'files',
-        //                 Key: {
-        //                     'email': email
-        //                 }
-        //             };
+    //             dynamoDbObj.get(params1, function (err, filedata) {
 
-        //             dynamoDbObj.get(params1, function (err, filedata) {
+    //                 console.log(currentuser);
+    //                 console.log(filedata);
+    //                 console.log(userdata);
+    //                 if (err){ throw err}
+    //                 else{
 
-        //                 console.log(currentuser);
-        //                 console.log(filedata);
-        //                 console.log(userdata);
-        //                 if (err){ throw err}
-        //                 else{
+    //                     res.render('dashboard',{
+    //                         user: currentuser,
+    //                         data: filedata,
+    //                         logins: userdata
+    //                     })
+    //                 }
+    //             })
+    //         }
+    //     })
+    // }
 
-        //                     res.render('dashboard',{
-        //                         user: currentuser,
-        //                         data: filedata,
-        //                         logins: userdata
-        //                     })
-        //                 }
-        //             })
-        //         }
-        //     })
-        // }
+    // getdata();
 
-        // getdata();
+    User.find({ level: { $ne: "A" } }, (err, output) => {
+      // console.log(output);
+      Files.find({}, (err, data) => {
+        res.render("dashboard", {
+          user: currentuser,
+          data: data,
+          logins: output,
+        });
+      });
+    });
+  } else {
+    // let getdata = () => {
 
-        
-        User.find({ level: { $ne: 'A' }},(err, output) => {
-            // console.log(output);
-            Files.find({},(err, data) => {
-                
-                res.render('dashboard',{
-                    user: currentuser,
-                    data: data,
-                    logins: output
-                })
-            })
-        })
-      
-    }
-    else{
+    //     var params= {
+    //         TableName: 'files',
+    //         Key: {
+    //             'email': email
+    //         }
+    //     };
 
-        // let getdata = () => {
+    //     dynamoDbObj.get(params, function (err, filedata) {
 
-        //     var params= {
-        //         TableName: 'files',
-        //         Key: {
-        //             'email': email
-        //         }
-        //     };
+    //         if (err){ throw err}
+    //         else{
 
-        //     dynamoDbObj.get(params, function (err, filedata) {
+    //             console.log(filedata);
 
-        //         if (err){ throw err}
-        //         else{
+    //             res.render('dashboard',{
+    //                 user: currentuser,
+    //                 data: filedata,
+    //                 logins: { }
+    //             })
+    //         }
+    //     })
+    // }
 
-        //             console.log(filedata);
-
-        //             res.render('dashboard',{
-        //                 user: currentuser,
-        //                 data: filedata,
-        //                 logins: { }
-        //             })
-        //         }
-        //     })
-        // }
-
-        Files.find({ email : req.user.email },(err, data) => {
-            console.log(data);
-            res.render('dashboard',{
-                
-                user: currentuser,
-                data: data,
-                logins: {}
-            })
-        })
-    }
+    Files.find({ email: req.user.email }, (err, data) => {
+      console.log(data);
+      res.render("dashboard", {
+        user: currentuser,
+        data: data,
+        logins: {},
+      });
+    });
+  }
 });
 
-
-
-module.exports=router;
+module.exports = router;

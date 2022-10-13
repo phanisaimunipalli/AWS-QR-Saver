@@ -1,32 +1,20 @@
 <div class="row mt-5">
-        <div class="col-md-8 m-auto">
-          <div class="card card-body" style="box-shadow: 20px 20px 25px 10px lightblue;">
-            
-            <h1 class="text-center mb-3" style="text-shadow: 0 0 3px green;">Sign in <i class="fas fa-sign-in-alt" style="font-size:48px;color:green"></i>  </h1>
-            <% include ./partials/messages %>
-            <form action="/users/login" method="POST">
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  class="form-control"
-                  placeholder="Enter your email"
-                />
-              </div>
-              <div class="form-group">
-                <label for="password">Password</label>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  class="form-control"
-                  placeholder="Enter Password"
-                />
-              </div>
-              <div align="center">
-              <button type="submit" class="btn btn-primary" style="background-color: #4CAF50; /* Green */
+  <div class="col-md-8 m-auto">
+    <div class="card card-body" style="box-shadow: 20px 20px 25px 10px lightblue;">
+
+      <h1 class="text-center mb-3" style="text-shadow: 0 0 3px green;">Sign in <i class="fas fa-sign-in-alt" style="font-size:48px;color:green"></i> </h1>
+      <% include ./partials/messages %>
+      <form action="/users/login" method="POST">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password" />
+        </div>
+        <div align="center">
+          <button type="submit" class="btn btn-primary" style="background-color: #4CAF50; /* Green */
               border: none;
               color: white;
               font-weight: bold;
@@ -34,11 +22,11 @@
               text-decoration: none;
               display: inline-block;
               font-size: 16px;">Login</button>
-              </div>
-            </form>
-            <p class="white mt-4" align="center" style="font-size: 15px;font-weight:1300">
-              No Account? <a href="/users/register">Create Now</a> or <a href="/users/auth/google"> Login with <i class="fab fa-google"></i></a> / <a href="/users/auth/facebook"></i>Login with facebook</i></a>
-            </p>
-          </div>
         </div>
-      </div>
+      </form>
+      <p class="white mt-4" align="center" style="font-size: 15px;font-weight:1300">
+        No Account? <a href="/users/register">Create Now</a> or <a href="/users/auth/google"> Login with <i class="fab fa-google"></i></a> / <a href="/users/auth/facebook"></i>Login with facebook</i></a>
+      </p>
+    </div>
+  </div>
+</div>

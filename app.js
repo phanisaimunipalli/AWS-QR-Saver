@@ -15,6 +15,7 @@ require("./config/passport")(passport);
 //DB config
 const db = require("./config/keys").MongoURI;
 
+app.use("/public/", express.static("./public"));
 //connect to Mongo
 mongoose
   .connect(db, { useNewUrlParser: true })
@@ -24,7 +25,6 @@ mongoose
 //EJS
 app.use(expressLayouts);
 app.set("view engine", "ejs");
-app.use("/public/", express.static("./public"));
 
 //BodyParser
 app.use(express.json());
