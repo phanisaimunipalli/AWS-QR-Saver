@@ -4,7 +4,7 @@
 Welcome to the AWS QR Saver
 ==================================================
 
-We all come across many QR Codes daily and it is hard to track all of them when they are in mixed with our personal photos in the gallery. The QR Saver solves this problem by with a **AWS Cloud Solution** to allow users to upload, update, download and delete your QR Codes from anywhere in the world.
+We come across many QR Codes daily and it is hard to track all of them when they are mixed with our personal photos in the gallery. The QR Saver solves this problem with a powerful **AWS Cloud Solution** to allow users to upload, update, download and delete your QR Codes from anywhere in the world.
 
 
 Coursework
@@ -15,6 +15,7 @@ This web application is powered by AWS CodeStar and developed as part of CMPE-28
 * Course: Cloud Technologies (CMPE-281)
 *	Professor: [Sanjay Garje](https://www.linkedin.com/in/sanjaygarje/)
 *	Student: [Phani Sai Ram Munipalli](https://www.linkedin.com/in/iamphanisairam/)
+* Major: Masters in Software Engineering
 
 What's Here
 -----------
@@ -162,4 +163,9 @@ Created the application with maximum scalability and availbility across differen
 
 ![Custom Files](https://github.com/phanisaimunipalli/AWS-QR-Saver/blob/master/screenshots/qrsaver-files-custom.gif?raw=true)
 
+
+
+## Authors
+
+- [@phanisaimunipalli](https://www.github.com/phanisaimunipalli)
 
